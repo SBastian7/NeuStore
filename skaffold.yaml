@@ -1,0 +1,23 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+portForward: []
+build:
+  artifacts:
+    - image: SBastian7/NeuStore
+profiles:
+  - name: production
+    deploy:
+      kustomize:
+        paths:
+          - k8s/overlays/production
+    build:
+      artifacts:
+        - image: SBastian7/NeuStore
+          sync:
+            manual:
+              - src: src/**/*.js
+                dest: .
+          docker:
+            buildArgs:
+              ENV: production
+
