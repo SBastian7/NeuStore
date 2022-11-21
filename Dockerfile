@@ -10,7 +10,7 @@
 # FROM nginx
 # COPY --from=build /build/artifact /usr/share/nginx/html
 
-FROM node
+FROM --platform=linux/amd64 node
 
 # set working directory
 WORKDIR /app
